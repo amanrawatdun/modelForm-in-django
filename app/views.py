@@ -40,3 +40,10 @@ def student_edit(request , id):
     else:
             form = StdForm(instance=student)
     return render(request , 'update.html' ,{"form":form})        
+
+def studentDelete(request ,id ):
+    student = get_object_or_404(Std , id=id)
+    if request .method == 'POST':
+         student.delete()
+         return redirect("home")
+    return render(request , 'delete.html' ,{'student':student})
