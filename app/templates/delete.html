@@ -3,14 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Delete Student Confirmation</title>
+    <style>
+        /* Modern Reset & Font Setup */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Warning Card Container */
+        .delete-container {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        /* Warning Icon Graphic */
+        .warning-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #fde8e8;
+            color: #e74c3c;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0 auto 20px auto;
+        }
+
+        h1 {
+            color: #333333;
+            font-size: 22px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        p {
+            color: #666666;
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        .student-name {
+            color: #222222;
+            font-weight: 600;
+        }
+
+        /* Form Layout */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* Destructive Action Button */
+        button[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #c0392b;
+        }
+
+        /* Safe Cancel Link */
+        .btn-cancel {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background-color: #f8f9fa;
+            color: #555555;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            border: 1px solid #dcdee2;
+            transition: all 0.2s ease;
+        }
+
+        .btn-cancel:hover {
+            background-color: #f0f2f5;
+            color: #333333;
+        }
+    </style>
 </head>
 <body>
-    <h1>delete student</h1>
-    <form method="POST" action="{% url 'studentDelete' student.id %}">
-        {% csrf_token %}
-        <button type="submit" >delete student</button>
-        <a href="{% url 'studentdetails' student.id %}">cancel</a>
-    </form>
+
+    <div class="delete-container">
+        <!-- Visual indicator that this is a destructive action -->
+        <div class="warning-icon">!</div>
+        
+        <h1>Delete Student</h1>
+        <p>Are you sure you want to permanently delete <span class="student-name">{{ student.name }}</span>? This action cannot be undone.</p>
+        
+        <form method="POST" action="{% url 'studentDelete' student.id %}">
+            {% csrf_token %}
+            <button type="submit">Yes, Delete Student</button>
+            <a href="{% url 'studentdetails' student.id %}" class="btn-cancel">Cancel</a>
+        </form>
+    </div>
+
 </body>
 </html>

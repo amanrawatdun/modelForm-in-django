@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>form</title>
-</head>
-<body>
-    <h1>This is form page</h1>
+{% extends 'base.html' %}
+
+{% block title %}Student Form{% endblock %}
+
+{% block content %}
+    <h1>Student Information</h1>
+    
     <form action="{% url 'create_form' %}" method="POST">
         {% csrf_token %}
-        {{std.as_p}}
-        <button type="submit" >submit</button>
+        {{ std.as_p }}
+        <button type="submit">Submit</button>
     </form>
-</body>
-</html>
+{% endblock %}
