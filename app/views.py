@@ -1,4 +1,4 @@
-from django.shortcuts import render , redirect
+from django.shortcuts import render , redirect , get_object_or_404
 from django.http import HttpResponse
 from .forms import StdForm
 from .models import Std
@@ -25,4 +25,7 @@ def stdRead(request):
     data=Std.objects.all()
 
     return render(request , 'home.html',{"data":data})
-        
+
+def studentDetails(request , id):
+    student = get_object_or_404(Std , id=id)
+    return render(request , 'student.html' , {"student":student})

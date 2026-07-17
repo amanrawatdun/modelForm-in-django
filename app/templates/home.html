@@ -9,12 +9,13 @@
     <h1>This is Home page</h1>
     <div>
         <p>this is std data</p>
+        <a href="{% url 'create_form'  %}">create a student</a>
         <ul>
-            {% for std in data %}
-                <li>{{std.name}}</li>
-                <li>{{std.age}}</li>
-                <li>{{std.city}}</li>
-            {% endfor %}
+            {% for s in data %}
+                <li>
+                    <a href="{% url 'studentdetails' s.id  %} ">{{s.name}} {{s.city}}</a>
+                </li>
+            {% endfor   %}
         </ul>
     </div>
 </body>
