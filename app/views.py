@@ -29,3 +29,14 @@ def stdRead(request):
 def studentDetails(request , id):
     student = get_object_or_404(Std , id=id)
     return render(request , 'student.html' , {"student":student})
+
+def student_edit(request , id):
+    student = get_object_or_404(Std , id=id)
+    if request.method == 'POST':
+        form = StdForm(request.POST ,instance=student)
+        if form.is_valid():
+            form.save()
+            return redirect("home")
+    else:
+            form = StdForm(instance=student)
+    return render(request , 'update.html' ,{"form":form})        

@@ -10,6 +10,8 @@
     <p><strong>Name:</strong>{{student.name}}</p>
     <p><strong>Name:</strong>{{student.age}}</p>
     <p><strong>Name:</strong>{{student.city}}</p>
-   <a href="{% url 'home' %}">back to home page</a>
+    <a href="{% url 'home' %}">back to home page</a>
+   <br>
+   <a href="{% url 'studentedit' student.id %}">edit</a>
 </body>
 </html>
