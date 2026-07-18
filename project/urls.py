@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('' , include('app.urls')),
     path('' , include('msgapp.urls')),
+    path("" , include('authenticationsapp.urls'))
 ]

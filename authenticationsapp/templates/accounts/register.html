@@ -1,0 +1,104 @@
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+<style>
+    .auth-container {
+        max-width: 450px;
+        margin: 2rem auto;
+        padding: 2.5rem 2rem;
+        background: #ffffff;
+        border: 1px solid var(--border-color);
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    }
+
+    .auth-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text-color);
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+
+    /* Target Django's {{ form.as_p }} paragraphs */
+    .auth-form p {
+        margin-bottom: 1.25rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Style Django's auto-generated labels */
+    .auth-form label {
+        display: block;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #4b5563;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Style Django's auto-generated input fields */
+    .auth-form input[type="text"],
+    .auth-form input[type="password"],
+    .auth-form input[type="email"] {
+        width: 100%;
+        padding: 0.625rem 0.75rem;
+        font-size: 0.95rem;
+        border: 1px solid var(--border-color);
+        border-radius: 0.375rem;
+        background-color: #ffffff;
+        color: var(--text-color);
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .auth-form input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    }
+
+    /* Style help text (e.g., password requirements) if Django outputs it */
+    .auth-form .helptext {
+        display: block;
+        font-size: 0.75rem;
+        color: #6b7280;
+        margin-top: 0.25rem;
+    }
+
+    /* Style field errors if validation fails */
+    .auth-form .errorlist {
+        list-style: none;
+        color: #dc2626;
+        font-size: 0.85rem;
+        margin-bottom: 0.5rem;
+        padding: 0;
+    }
+
+    .btn-submit {
+        width: 100%;
+        padding: 0.625rem;
+        background-color: var(--primary-color);
+        color: #ffffff;
+        border: none;
+        border-radius: 0.375rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        margin-top: 0.5rem;
+    }
+
+    .btn-submit:hover {
+        background-color: var(--primary-hover);
+    }
+</style>
+
+<div class="auth-container">
+    <h2 class="auth-title">Create an Account</h2>
+    
+    <form method="POST" class="auth-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn-submit">Register</button>
+    </form>
+</div>
+{% endblock %}
